@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+  <title> Exposure Time Calculator Information Panel </title>
+  <link href="css/info.css" rel="stylesheet" type="text/css">
+  <script src="css/BlackTie/external/jquery/jquery.js"></script>
+  <script src="css/BlackTie/jquery-ui.js"></script>
+  <script src="js/expcalc.js"></script>
+
+  <script language="javascript">
+    var selectedInstrument = "none";
+
+    $(document).ready(function()
+    {
+      SelectNone();
+      ClearFocus();
+      ClearAll();
+      ShowInstrument();
+    });
+
+    //Hide any focused items
+    function ClearFocus()
+    {
+      $("#blue_grating").hide();
+      $("#red_grating").hide();
+      $("#aperture").hide();
+    }
+
+    //Hide everything
+    function ClearAll()
+    {
+      $("#instrument").hide();
+      $("#output").hide();
+      ClearFocus();
+    }
+
+    //Show that no instrument is selected and update accordingly
+    function SelectNone()
+    {
+      $("#blue_light").hide();
+      $("#blue_select").hide();
+      $("#red_light").hide();
+      $("#red_select").hide();
+      selectedInstrument = "none";
+    }
+
+    //Triggered if Red is selected
+    function SelectRed()
+    {
+      ClearFocus();
+      $("#blue_light").hide();
+      $("#blue_select").hide();
+      $("#red_light").fadeIn('slow');
+      selectedInstrument = "red";
+    }
+
+    //Triggered if Blue is selected
+    function SelectBlue()
+    {
+      ClearFocus()
+      $("#blue_light").fadeIn("slow");
+      $("#red_light").hide();
+      $("#red_select").hide();
+      selectedInstrument = "blue";
+    }
+
+    //Bring in the selected Instrument
+    function ShowInstrument()
+    {
+      ClearAll();
+      $("#instrument").fadeIn();
+    }
+
+    //Show the output parameters
+    function ShowOutputHelp()
+    {
+      ClearAll();
+      $("#output").fadeIn();
+    }
+
+</script>
+</head>
+
+<body>
+  <div id="step_1">
+    <div  id="instrument">
+      <h2> Selected Instrument </h2>
+      <img id="main_instrument" src="images/instrument/main.png" alt="Red Blue Channel Diagram" width="400" height="347">
+      <img id="blue_light" src="images/instrument/blue_light.png" width="400" height="347">
+      <img id="blue_select" src="images/instrument/blue_select.png" width="400" height="347">
+      <img id="red_light" src="images/instrument/red_light.png" width="400" height="347">
+      <img id="red_select" src="images/instrument/red_select.png" width="400" height="347">
+      <img id="blue_grating" src="images/instrument/blue_grating.png" width="400" height="347">
+      <img id="red_grating" src="images/instrument/red_grating.png" width="400" height="347">
+
+    </div>
+  </div>
+
+  <div id="output">
+    <h2> Calculation Output </h2>
+    <p> Would you like to calculation the <strong> Integration Time </strong>
+      (given a desired signal-to-noise ratio) or the <strong> Signal-to-Noise Ratio
+      </strong> for an observation of a given exposure time?</p>
+
+    <p><strong>Integration Time </strong> is the optimal observation time for an
+      exposure based on the parameters you provide in the next step. </p>
+    <p><strong> Signal-to-Noise Ratio </strong> is the quality the spectrum will
+      obtain based on the parameters you provie and a fixed exposure time. </p>
+  </div>
+
+
+
+
+</body>
+</html>

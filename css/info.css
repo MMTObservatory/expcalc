@@ -1,0 +1,85 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+}
+#debug
+{
+        position:absolute;
+        top:0px;
+        left:0px;
+        font-family:Verdana, Arial, Helvetica, sans-serif;
+        font-size:8px;
+        color:red;
+}
+
+#blue_light
+{
+        position:absolute;
+        top:40px;
+        left:0px;
+}
+
+table
+{
+        border-collapse:collapse;
+}
+table,th, td
+{
+        border: 1px solid black;
+        padding-left:3px;
+}
+
+.grating_table
+{
+        font-family:Verdana, Arial, Helvetica, sans-serif;
+        font-size:8px;
+}
+
+#main_instrument
+{
+        position:absolute;
+        top:50px;
+        left:0px;
+}
+
+#blue_select
+{
+        position:absolute;
+        top:50px;
+        left:0px;
+}
+#red_select
+{
+        position:absolute;
+        top:50px;
+        left:0px;
+}
+
+#red_light
+{
+        position:absolute;
+        top:50px;
+        left:0px;
+}
+
+#blue_grating
+{
+        position:absolute;
+        top:50px;
+        left:0px;
+}
+
+#red_grating
+{
+        position:absolute;
+        top:50px;
+        left:0px;
+}
+
+#aperature
+{
+        position:absolute;
+        top:50px;
+        left:0px;
+}

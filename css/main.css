@@ -1,0 +1,159 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+        font-family:Verdana, Arial, Helvetica, sans-serif;
+        font-size:14px;
+
+}
+
+#left_container
+{
+        float:left;
+        width:25%;
+}
+
+#right_container
+{
+        float:left;
+        overflow:hidden;
+        margin-left: 3px
+}
+
+#floater
+{
+
+        width:50px;
+        height:40px;
+        position:relative;
+        top:20px;
+}
+
+.floater_help
+{
+        position:relative;
+}
+
+#floating_column
+{
+        float:left;
+        width:50px;
+        height:500px;
+        border: solid 2px #003366;
+}
+
+.clear
+{
+        clear:both;
+}
+.bold
+{
+        font-weight:bold;
+}
+
+#container
+{
+        margin-left:auto;
+        margin-right:auto;
+        width:100%;
+}
+
+#plotcontainer
+{
+  display:none;
+  width:700px;
+}
+
+#snrcontainer
+{
+  display:none;
+  width:700px;
+}
+
+.container
+{
+
+        width:300px;
+        border-style:solid;
+        border-color:#333333;
+        border-width:1px;
+        padding:10px;
+}
+
+.footer
+{
+        padding-top:10px;
+        font-size:10px;
+}
+
+.error
+{
+        background-color:#FF6666;
+}
+
+.stepTitle
+{
+        font-weight:bold;
+        font-size:12px;
+}
+
+#container_step1
+{
+
+}
+
+.subparam
+{
+        padding-left:14px;
+}
+.resultparam
+{
+    padding-left:14px;
+    padding-top:8px;
+    display:none;
+}
+
+.resultparam input{
+    font-weight: bold;
+    text-align: right;
+}
+
+.resultbuttons button{
+    padding:8px;
+    margin:8px;
+    display:none;
+}
+
+
+
+.formContainer div
+{
+        padding-top:8px;
+}
+
+#loading_message
+{
+        padding:20px;
+        font-size:12px;
+}
+
+.plotTitle
+{
+        font-size:14px;
+        font-weight:bold;
+        padding-top:20px;
+}
+
+.plotDescription
+{
+        padding-left:50px;
+        padding-top:20px;
+}
+
+
+
+#result_container
+{
+    width:800px;
+}
