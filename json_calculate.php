@@ -39,7 +39,7 @@ $result = shell_exec("python python/json_exptime.py " . escapeshellarg(json_enco
 
 //Decode the result
 $form_data = json_decode($result, true);
-$form_data['command'] = "python json_exptime.py " . escapeshellarg(json_encode($params));
+$form_data['command'] = "python python/json_exptime.py " . escapeshellarg(json_encode($params));
 
 if (!empty($errors)) { // If there were any errors
   $form_data['success'] = false;

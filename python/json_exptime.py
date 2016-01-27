@@ -22,6 +22,8 @@ import scipy.special
 from scipy.interpolate import interp1d
 import math
 import json
+import re
+from  pylab import * 
 
 
 def extrap1d(interpolator):
@@ -53,6 +55,108 @@ def interpol(newx, oldx, oldy):
 		if newy[ii] < 0 : newy[ii] = 1e-8
 
 	return newy
+
+def getFilterCorrection(opt, lam):
+	#Read the filter information for the given filter and return a 
+	#vector based on wavelength lam that interpolates and 
+	#(smartly) extrapolates the filter over the full range.
+	filterName = opt['filter']
+
+	#Read the proper throughput data
+	if filterName == "Clear":
+		filtThrough = []
+		filtLam = np.arange(3000, 1e4) # we don't have a file for clear, so just construct it
+		for ii in range(0, len(filtLam)):
+			filtThrough.append(1.0)
+	else:
+		filtFilename = 'data/spectrodata/filters/' + filterName + '.dat'
+		filtLam, filtThrough = readSpectroDataFile(filtFilename)
+
+	#Now, we just need to interpolate through the array to lam
+	filtInterpol = interpol(lam, filtLam, filtThrough)
+
+
+	#We can do this because we sort the vectors
+	filtInterpol = cleanThroughputCorrections(lam, filtInterpol, filtLam, filtThrough)
+
+
+	return filtInterpol/100.
+
+
+def getBlazeCorrection(opt, lam):
+	#This function will look at the grating requested and make a correction between that and the nominal grating 
+	#that the throughput was defined for and calculate the correction term for the blaze function.
+
+	instr =  opt['spectrograph']
+	grating = opt['grating']
+
+	referenceGrating = '300' #True for both red and blue
+
+
+	#Trim 'gpm' from the grating name
+	grating = re.sub('gpm', '', grating)
+
+	#Check to see if this is either of the two gratings we use in 2nd order.
+	if grating == '600' and opt['order'] == 2 :
+		grating = '600_2nd'
+	if grating == '832' and opt['order'] == 2:
+		grating = '832_2nd'
+
+	blazeFilename = 'data/spectrodata/grating/' + instr + '_' + grating + '.dat'
+	refFilename = 'data/spectrodata/grating/' + instr + '_' + referenceGrating + '.dat'
+
+	blazeLam, blazeThrough = readSpectroDataFile(blazeFilename)
+	refLam, refThrough = readSpectroDataFile(refFilename)
+
+	#Need to do the interpolation and extrapolation before the ratio to mae sure we're on the same
+	#pixel coordinates
+	blazeInterpol = interpol(lam, blazeLam, blazeThrough)
+	blazeInterpol = cleanThroughputCorrections(lam, blazeInterpol, blazeLam, blazeThrough)
+
+	refInterpol = interpol(lam, refLam, refThrough)
+	refInterpol = cleanThroughputCorrections(lam, refInterpol, refLam, refThrough)
+
+	#Now, we need to multiply by the blazeInterpol, but divide by the reference
+
+	return blazeInterpol / refInterpol
+
+
+
+def cleanThroughputCorrections(lam, fullInterpol, fullLam, fullThrough):
+	#This is just a function to do a repeated task of extrapolating throughput currves
+
+	for ii in range(0, len(lam)):
+		if (lam[ii] < np.amin(fullLam)):
+			fullInterpol[ii] = fullThrough[0]
+		if (lam[ii] > np.amax(fullLam)):
+			fullInterpol[ii] = fullThrough[-1]
+		if (fullInterpol[ii] <= 0):
+			fullInterpol[ii] = 1e-9 #I do this to remove divide by zero errors
+	return fullInterpol
+
+
+def readSpectroDataFile(filename):
+	#Quick wrapper to read the points for the spectrograph data (x,y) whitespace separated.
+
+	f = open(filename, 'r')
+
+	xx = []
+	yy = []
+
+	for line in f.readlines():
+		splitArray = line.split();
+		if len(splitArray) == 2:
+			x1, y1 = map(float, splitArray)
+			xx.append(x1)
+			yy.append(y1)
+
+	xx = np.array(xx)
+	yy = np.array(yy)
+
+	order = np.argsort(xx)
+
+	return xx[order], yy[order]
+
 
 def read_options(filename):
 	#Read the filename into a dictionary. The assumed format is white space separation
@@ -147,13 +251,13 @@ def grating_params(opt):
 			return [230,6.37]
 		if grat == '300gpm' :
 			return [460,3.21]
-		if grat == '600-4800':
+		if grat == '600_4800':
 			return [960,1.63]
-		if grat == '600-6310':
+		if grat == '600_6310':
 			return [1290,1.64]
-		if grat == '1200-7700':
+		if grat == '1200_700':
 			return [3930,0.80]
-		if grat == '1200-9000':
+		if grat == '1200_9000':
 			return [5097,0.78]
 
 
@@ -353,6 +457,16 @@ def main(argv):
 	#Get the readnoise
 	readnoise = get_readnoise(opt)
 
+	#Get the correction due to the filter
+	filterCorrection = getFilterCorrection(opt, lam)
+	objflux = objflux * filterCorrection
+
+	#Get the blaze function correction 
+	gratingCorrection = getBlazeCorrection(opt, lam)
+
+	plot(lam, objflux)
+	plot(lam, objflux*gratingCorrection)
+	show();
 
 
 
@@ -472,7 +586,7 @@ def main(argv):
 	data['snr'] = zip(lam.tolist(), snr.tolist())
 
 
-	print json.dumps(data)
+	json.dumps(data)
 
 if __name__=="__main__":
 	main(sys.argv)
