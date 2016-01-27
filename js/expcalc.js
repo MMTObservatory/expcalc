@@ -81,6 +81,27 @@ function selectOutput() {
 }
 
 
+
+//Trigger the signal to noise information panel
+function focusSignalNoise()
+{
+  window.frames.info_frame.ShowSignalNoise();
+}
+
+//Clear any other focus related stuff
+function focusClear()
+{
+  window.frames.info_frame.ClearFocus();
+}
+
+//Show the tables for the gratings of the given instrument
+function focusGratings()
+{
+  focusClear();
+  window.frames.info_frame.ShowGrating();
+}
+
+
 function onAccordionChange(e, ui) {
   //Called when the accordion navigation chnges.
   switch (ui.newHeader.attr('id')) {

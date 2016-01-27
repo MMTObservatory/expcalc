@@ -93,7 +93,7 @@
 						<div>
 							<span class="bold"> Grating: </span>
 							<div class="subparam">Available Gratings:
-								<select onFocus="focusGratings();" onChange="processGratings(value);" name="grating_selector" id="grating_selector" disabled>
+								<select onFocus="focusGratings();" name="grating_selector" id="grating_selector" disabled>
 									<option value="noinstrument" selected> Select Instrument</option>
 								</select>
 							</div>

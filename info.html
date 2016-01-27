@@ -21,8 +21,8 @@
     //Hide any focused items
     function ClearFocus()
     {
-      $("#blue_grating").hide();
-      $("#red_grating").hide();
+      $("#blue_gratings").hide();
+      $("#red_gratings").hide();
       $("#aperture").hide();
     }
 
@@ -31,7 +31,12 @@
     {
       $("#instrument").hide();
       $("#output").hide();
+      $("#red_gratings").hide();
+      $("#blue_gratings").hide();
+      $("#aperture").hide();
+      $("#signal_to_noise").hide();
       ClearFocus();
+
     }
 
     //Show that no instrument is selected and update accordingly
@@ -78,6 +83,50 @@
       $("#output").fadeIn();
     }
 
+    //Show the signal to noise infographic
+    function ShowSignalNoise()
+    { 
+      debug( "show signal-to-noise" );
+      ClearAll();
+      $("#signal_to_noise").fadeIn();
+    }
+
+    //Generic content tool when I have nothing to add at this point
+    function debug( message )
+    {
+      $("#debug").html( message );
+    }
+
+    function ClearFocus()
+    {
+      $("#blue_gratings").hide();
+      $("#red_gratings").hide();
+      $("#aperture").hide();
+    }
+
+
+    //Show the relevant table of grating information
+    function ShowGrating()
+    {
+      ClearAll();
+      console.log(selectedInstrument);
+      switch( selectedInstrument )
+      {
+        case "red":
+          debug( "showing red grating" );
+          $("#red_gratings").fadeIn();
+          break;
+        case "blue":
+          debug( "showing blue grating" );
+          $("#blue_gratings").fadeIn();
+          break;
+        default:
+          debug( "error setting grating." );
+          break;
+
+      }
+    }
+
 </script>
 </head>
 
@@ -108,6 +157,111 @@
       obtain based on the parameters you provie and a fixed exposure time. </p>
   </div>
 
+  <div id="signal_to_noise">
+    <h2>Signal-to-Noise</h2>
+    <p>
+    Enter the desired <strong> signal-to-noise</strong> value that you wish your exposure to reach. The convention of this calculator is the signal-to-noise per extracted pixel (summed across the spatial direction for a point source).
+  </div> 
+
+  <div id="red_gratings">
+    <h2> Red Channel Gratings: </h2>
+    <p>
+  
+    <table id="one-column-emphasis" class=>
+      <colgroup>
+        <col class='oce-first'>
+      </colgroup>
+
+      </th>
+        <td> Grating (lines/mm) </td>
+        <td> Blaze (order/ &lambda; &Aring;) </td>
+        <td> R (@ Blaze, 1" slit) </td>
+        <td> Dispersion (&Aring;) </td>
+        <td> Resolution (&Aring;) </td>
+        <td> Coverage (&Aring;) </td> 
+      </th>
+      <tr>
+        <td> 150 </td>
+        <td> 1st / 4800 </td>
+        <td> 230 </td>
+        <td> 21.0 </td>
+        <td> 6.37 </td>
+        <td> 6574 </td> 
+      </tr> 
+      <tr>
+        <td> 270 </td>
+        <td> 1st / 7300 </td>
+        <td> 640 </td>
+        <td> 11.4 </td>
+        <td> 3.59 </td>
+        <td> 3705 </td>
+      </tr>
+      <tr>
+        <td> 300 </td>
+        <td> 1st / 4800 </td>
+        <td> 460 </td>
+        <td> 10.3 </td>
+        <td> 3.21 </td>
+        <td> 3313 </td>
+      </tr>
+      <tr>
+        <td> 600 </td>
+        <td> 1st / 4800 </td>
+        <td> 960 </td>
+        <td> 5.0 </td>
+        <td> 1.63 </td>
+        <td> 1682 </td>
+      </tr>
+      <tr> 
+        <td> 600 </td>
+        <td> 1st / 6310 </td>
+        <td> 1290 </td>
+        <td> 4.90 </td>
+        <td> 1.64 </td>
+        <td> 1692 </td>
+      </tr>
+      <tr> 
+        <td> 1200 </td>
+        <td> 1st / 7700 </td>
+        <td> 3930 </td>
+        <td> 1.96 </td>
+        <td> 0.80 </td>
+        <td> 826 </td>
+      </tr>
+      <tr>
+        <td> 1200 </td>
+        <td> 1st / 9000 </td>
+        <td> 5097 </td>
+        <td> 1.77 </td>
+        <td> 0.78 </td>
+        <td> 805 </td>
+      </tr>
+
+
+
+      </table>
+    </div>
+
+    <div id="blue_gratings">
+    <h2> Blue Channel Gratings: </h2>
+    <p>
+    <table id="one-column-emphasis">
+      <colgroup>
+        <col class='oce-first'>
+      </colgroup>
+      <tr>
+        <td> Grating (lines/mm) </td>
+        <td> Blaze (order/&lambda; &Aring;) </td>
+        <td> R (@ Blaze, 1" slit) </td>
+        <td> Dispersion (&Aring;) </td>
+        <td> Coverage (&Aring;) </td> 
+      </tr>
+      </table>
+    </p>
+    </div>
+
+    <div id='aperture'>
+    </div>
 
 
 
