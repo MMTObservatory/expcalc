@@ -67,7 +67,7 @@ def getFilterCorrection(opt, lam):
 		filtThrough = []
 		filtLam = np.arange(3000, 1e4) # we don't have a file for clear, so just construct it
 		for ii in range(0, len(filtLam)):
-			filtThrough.append(1.0)
+			filtThrough.append(100.0)
 	else:
 		filtFilename = 'data/spectrodata/filters/' + filterName + '.dat'
 		filtLam, filtThrough = readSpectroDataFile(filtFilename)
@@ -91,7 +91,6 @@ def getBlazeCorrection(opt, lam):
 	grating = opt['grating']
 
 	referenceGrating = '300' #True for both red and blue
-
 
 	#Trim 'gpm' from the grating name
 	grating = re.sub('gpm', '', grating)
@@ -460,13 +459,12 @@ def main(argv):
 	#Get the correction due to the filter
 	filterCorrection = getFilterCorrection(opt, lam)
 	objflux = objflux * filterCorrection
+	
 
 	#Get the blaze function correction 
 	gratingCorrection = getBlazeCorrection(opt, lam)
+	objflux = objflux * gratingCorrection
 
-	plot(lam, objflux)
-	plot(lam, objflux*gratingCorrection)
-	show();
 
 
 
@@ -584,9 +582,7 @@ def main(argv):
 	data['objcounts'] = zip(lam.tolist(), objcounts.tolist())
 	data['totalcounts'] = zip(lam.tolist(), totalcounts.tolist())
 	data['snr'] = zip(lam.tolist(), snr.tolist())
-
-
-	json.dumps(data)
+	print json.dumps(data)
 
 if __name__=="__main__":
 	main(sys.argv)

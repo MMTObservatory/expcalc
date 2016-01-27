@@ -116,17 +116,25 @@
 							Filter:
 							<select name="filters" id="filters" onFocus="focusFilters();">
 								<option value="Clear" selected>Clear</option>
-								<option value="2.5ND">2.5m Neutral Density</option>
-								<option value="R-63">R-63</option>
-								<option value="L-38">L-38</option>
-								<option value="0.5ND">0.5m Neutral Density</option>
-								<option value="1.25ND">1.25m Neutral Density</option>
-								<option value="UV-36">UV-36</option>
-								<option value="L-42">L-42</option>
-								<option value="Dark">Dark</option>
+								<!-- Blue Blockers -->
+								<option value="UV36">UV-36</option>
+								<option value="L38">L-38</option>
+								<option value="L42">L-42</option>
+								<option value="LP594">LP-495 (Y-50)</option>
+								<option value="LP530">LP-530</option>								
+								<option value="R63">R-63</option>
+								<!--Red blockers -->
 								<option value="CM500">CM500</option>
 								<option value="CuSO4">CuSO4</option>
-								<option value="LP-530">LP-530</option>
+								<option value="C500">C-500</option>
+								<option value="U330">U330</option>
+								<!--Neutral Density -->
+								<option value="05ND">0.5m Neutral Density</option>
+								<option value="125ND">1.25m Neutral Density</option>
+								<option value="25ND">2.5m Neutral Density</option>
+
+
+
 							</select>
 						</div>
 						<!-- Binning : -->
