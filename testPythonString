@@ -1,0 +1,1 @@
+python python/json_exptime.py '{"spectrograph":"blue","outputType":"1","depth":13,"calcType":"Time","grating":"800gpm","order":1,"cenwave":5123,"filter":"Clear","binning_spatial":2,"binning_spectral":1,"slit_width":1.5,"seeing":1,"specmag":23,"lunar_phase":0,"airmass":1}'
