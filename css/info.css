@@ -19,23 +19,6 @@ body
         top:40px;
         left:0px;
 }
-
-table
-{
-        border-collapse:collapse;
-}
-table,th, td
-{
-        border: 1px solid black;
-        padding-left:3px;
-}
-
-.grating_table
-{
-        font-family:Verdana, Arial, Helvetica, sans-serif;
-        font-size:8px;
-}
-
 #main_instrument
 {
         position:absolute;
@@ -83,3 +66,37 @@ table,th, td
         top:50px;
         left:0px;
 }
+#one-column-emphasis
+{
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 10px;
+        margin: 35px;
+        width: 600px;
+        text-align: center;
+        border-collapse: collapse;
+}
+#one-column-emphasis th
+{
+        font-size: 14px;
+        font-weight: bolder;
+        padding: 12px 15px;
+        color: #000000;
+}
+#one-column-emphasis td
+{
+        padding: 10px 15px;
+        color: #000000;
+        border-top: 1px solid #e8edff;
+}
+.oce-first
+{
+        background: #848482;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+}
+#one-column-emphasis tr:hover td
+{
+        color: #339;
+        background: #B6B6B4;
+}
+
