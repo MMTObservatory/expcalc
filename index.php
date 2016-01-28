@@ -121,7 +121,7 @@
 								<option value="L38">L-38</option>
 								<option value="L42">L-42</option>
 								<option value="LP594">LP-495 (Y-50)</option>
-								<option value="LP530">LP-530</option>								
+								<option value="LP530">LP-530</option>
 								<option value="R63">R-63</option>
 								<!--Red blockers -->
 								<option value="CM500">CM500</option>
@@ -144,13 +144,13 @@
 							<!-- Spatial -->
 							<div class="subparam">
 								Spatial Binning:
-								<input name="spatialBinning" type="text" id="spatialBinning" value="2" size="5" maxlegnth=2 />
+								<input name="spatialBinning" type="text" id="spatialBinning" value="2" size="5" maxlegnth=2 onFocus="focusBinning();"/>
 							</div>
 
 							<!-- Spectral -->
 							<div class="subparam">
 								Dispersion Binning:
-								<input name="spectralBinning" type="text" id="spectralBinning" value="1" size="5" maxlength=2 />
+								<input name="spectralBinning" type="text" id="spectralBinning" value="1" size="5" maxlength=2 onFocus="focusBinning();"/>
 							</div>
 
 						</div>
@@ -185,19 +185,19 @@
 							<!-- Seeing first -->
 							<div class="subparam">
 								Seeing:
-								<input name='seeing' type="text" id="seeing" value="1.0" size="5" maxlegnth=5/> arcsec
+								<input name='seeing' type="text" id="seeing" value="1.0" size="5" maxlegnth=5 onFocus="focusSeeing();"/> arcsec
 							</div>
 
 							<!-- Lunar phase -->
 							<div class="subparam">
 								Lunar Phase:
-								<input name='lunarphase' type='text' id='lunarphase' value='0' size='5' maxlength=2 />
+								<input name='lunarphase' type='text' id='lunarphase' value='0' size='5' maxlength=2 onFocus="focusLunarPhase();"/>
 							</div>
 
 							<!-- Airmass -->
 							<div class="subparam">
 								Airmass:
-								<input name='airmass' type='text' id='airmass' value="1.0" size="5" maxlegnth=4 />
+								<input name='airmass' type='text' id='airmass' value="1.0" size="5" maxlegnth=4 onFocus="focusAirmass();"/>
 							</div>
 
 							<!-- The magic "GO" Button -->

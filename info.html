@@ -35,6 +35,14 @@
       $("#blue_gratings").hide();
       $("#aperture").hide();
       $("#signal_to_noise").hide();
+      $("#central_wavelength").hide();
+      $("#filters").hide();
+      $("#ABmagnitude").hide();
+      $("#LunarPhase").hide();
+      $("#airmass").hide();
+      $("#seeing").hide();
+      $("#binning").hide();
+
       ClearFocus();
 
     }
@@ -85,7 +93,7 @@
 
     //Show the signal to noise infographic
     function ShowSignalNoise()
-    { 
+    {
       debug( "show signal-to-noise" );
       ClearAll();
       $("#signal_to_noise").fadeIn();
@@ -102,6 +110,62 @@
       $("#blue_gratings").hide();
       $("#red_gratings").hide();
       $("#aperture").hide();
+    }
+
+    function ShowCentralWavelength()
+    {
+      ClearAll();
+      $("#central_wavelength").fadeIn();
+      debug( "Show Central Wavelength" );
+    }
+
+    function ShowFilters()
+    {
+      ClearAll();
+      $("#filters").fadeIn();
+      debug( "Showing Filter information" );
+    }
+
+    function ShowAperture()
+    {
+      ClearAll();
+      $("#aperture").fadeIn();
+      debug( "Showing aperture information");
+    }
+
+    function ShowABMagnitude()
+    {
+      ClearAll();
+      $("#ABmagnitude").fadeIn();
+      debug( "Showing AB Magnitude information" );
+    }
+
+    function ShowLunarPhase()
+    {
+      ClearAll();
+      $("#LunarPhase").fadeIn();
+      debug( "Showing AB Magnitude information" );
+    }
+
+    function ShowAirmass()
+    {
+      ClearAll();
+      $("#airmass").fadeIn();
+      debug( "Showing Airmass information" );
+    }
+
+    function ShowSeeing()
+    {
+      ClearAll();
+      $("#seeing").fadeIn();
+      debug( "Showing seeing information" );
+    }
+
+    function ShowBinning()
+    {
+      ClearAll();
+      $("#binning").fadeIn();
+      debug( "Showing binning information" );
     }
 
 
@@ -145,6 +209,151 @@
     </div>
   </div>
 
+  <div id="central_wavelength">
+  <h2> Central Wavelength </h2>
+  <p>
+  The central wavelength determines the mid-point of the signal to observation.
+  You should try and make this the same as you would for actually observations to get the most meaningful exposure time or signal to noise estimate.
+  </p>
+  </div>
+
+
+  <div id="aperture">
+  <h2> Choose Aperture </h2>
+  <p>
+  The following slits widths are available for Red and Blue Channel.  As a rule of thubm, the median seeing at the MMT is on the order of 0.85".
+    <table id="one-column-emphasis" class=>
+      <colgroup>
+        <col class='oce-first'>
+      </colgroup>
+
+      </th>
+        <td> Slit Width (arcsec) </td>
+        <td> Blue FWHM (pixels) </td>
+        <td> Red FWHM (pixels) </td>
+      </th>
+      <tr>
+        <td> 0.75 </td>
+        <td> 2.5 </td>
+        <td> 2.6 </td>
+      </tr>
+      <tr>
+        <td> 1.00 </td>
+        <td> 2.8 </td>
+        <td> 3.2 </td>
+      </tr>
+      <tr>
+        <td> 1.25 </td>
+        <td> 3.1 </td>
+        <td> 3.8 </td>
+      </tr>
+      <tr>
+        <td> 1.50 </td>
+        <td> 3.6 </td>
+        <td> 4.1 </td>
+      </tr>
+      <tr>
+        <td> 2.0 </td>
+        <td> 4.5 </td>
+        <td> 5.3 </td>
+      </tr>
+      <tr>
+        <td> 3.5 </td>
+        <td> 7.9 </td>
+        <td> 10.0 </td>
+      </tr>
+      <tr>
+        <td> 5.0 </td>
+        <td> 11.5 </td>
+        <td> 16.0 </td>
+      </tr>
+      </table>
+
+  </p>
+  </div>
+
+
+
+
+  <div id="filters">
+  <h2> Filters </h2>
+  <p> The f/9 topbox has the following filters avaialble.  If other filters are
+  needed, significant advanced planning is required with MMTO staff.
+  <h3> Blue Blocking Filters </h3>
+  <ul>
+    <li> UV-36 </li>
+    <li> L-38 </li>
+    <li> L-42 </li>
+    <li> LP-495 (Y-50) </li>
+    <li> LP-530 </li>
+    <li> R-63 </li>
+  </ul>
+
+
+  <img id="blue_blocker_filters" src="images/blue_blockers.png" width=600 align="middle">
+
+  <h3> Red Blocking Filters </h3>
+  <ul>
+    <li> CuSo4 </li>
+    <li> U330 </li>
+    <li> C-500 </li>
+    <li> CM-500 </li>
+  </ul>
+
+  <img id="red_blocker_filters" src="images/red_blockers.png" width=600 align="middle">
+  <img id="red_hoya" src="images/hoya.png" width=400 align="middle">
+
+  <h3> Neutral Density Filters </h3>
+  <ul>
+    <li> 0.5 mag </li>
+    <li> 1.25 mag </li>
+    <li> 2.5 mag </li>
+  </ul>
+
+    </p>
+    </div>
+
+  <div id="ABmagnitude">
+  <h2> Enter Object AB magnitude </h2>
+  <p>
+  Currently, calculations are performed assuming the target is flat if F&nu; (i.e. has a constant AB magnitude).  These calculations assume a <strong> point source </strong>.  This may impact the calculation if you are studying an extended source or a source wher the majority of its flux is arising due to emission lines rather than continuum.
+  </p>
+  </div>
+
+  <div id="binning">
+  <h2> Binning </h2>
+  <p>
+  The desired binning on the detector is required in order to properly treat the noise in the detectors itself (outside of shot noise).  Typically, both Red and Blue Channel are operated using no binning (1) in the spectral direction and binning by 2 in the spatial direction.  Unbinned pixels have a scale of 0.3" / pixel.  Median seeing at the MMT is on the order of 0.85".s
+
+  </p>
+  </div>
+
+  <div id="LunarPhase">
+  <h2> Lunar Phase </h2>
+  <p>
+  Enter the lunar phase between -14 and 14 (lunar age from Observer's almanac). Recall that the new moon is at phase = 0, and the full moon is at +/- 14.
+  </p>
+  </div>
+
+  <div id="airmass">
+  <h2> Airmass </h2>
+  <p>
+  Clearly, the airmass at which an obseration is completed will have a significiant impact on the final signal to noise reached.  Enter the mean airmass for your observations. A sample extinction curve is shown below.
+
+  <img id="airmassPlot" src="images/extinct.png" width=650 align="middle">
+
+  </p>
+  </div>
+
+  <div id="seeing">
+  <h2> Seeing </h2>
+  <p>
+  The size of the seeing disk determines the fraction of the incoming source light that is lost by not making it through the slit. You need to specify the seeing you hope to achieve for your observations to estimate those slit losses. (Also, these calculations assume a <strong> point source </strong>.  Extended sources may have higher losses).
+  </p>
+  </div>
+
+
+
   <div id="output">
     <h2> Calculation Output </h2>
     <p> Would you like to calculation the <strong> Integration Time </strong>
@@ -161,12 +370,12 @@
     <h2>Signal-to-Noise</h2>
     <p>
     Enter the desired <strong> signal-to-noise</strong> value that you wish your exposure to reach. The convention of this calculator is the signal-to-noise per extracted pixel (summed across the spatial direction for a point source).
-  </div> 
+  </div>
 
   <div id="red_gratings">
     <h2> Red Channel Gratings: </h2>
     <p>
-  
+
     <table id="one-column-emphasis" class=>
       <colgroup>
         <col class='oce-first'>
@@ -174,23 +383,26 @@
 
       </th>
         <td> Grating (lines/mm) </td>
-        <td> Blaze (order/ &lambda; &Aring;) </td>
+        <td> Order </td>
+        <td> Blaze Wavelength (&Aring;)</td>
         <td> R (@ Blaze, 1" slit) </td>
-        <td> Dispersion (&Aring;) </td>
         <td> Resolution (&Aring;) </td>
-        <td> Coverage (&Aring;) </td> 
+        <td> Dispersion (&Aring;) </td>
+        <td> Coverage (&Aring;) </td>
       </th>
       <tr>
         <td> 150 </td>
-        <td> 1st / 4800 </td>
+        <td> 1st </td>
+        <td> 4800 </td>
         <td> 230 </td>
         <td> 21.0 </td>
         <td> 6.37 </td>
-        <td> 6574 </td> 
-      </tr> 
+        <td> 6574 </td>
+      </tr>
       <tr>
         <td> 270 </td>
-        <td> 1st / 7300 </td>
+        <td> 1st </td>
+        <td> 7300 </td>
         <td> 640 </td>
         <td> 11.4 </td>
         <td> 3.59 </td>
@@ -198,7 +410,8 @@
       </tr>
       <tr>
         <td> 300 </td>
-        <td> 1st / 4800 </td>
+        <td> 1st </td>
+        <td> 4800 </td>
         <td> 460 </td>
         <td> 10.3 </td>
         <td> 3.21 </td>
@@ -206,23 +419,26 @@
       </tr>
       <tr>
         <td> 600 </td>
-        <td> 1st / 4800 </td>
+        <td> 1st </td>
+        <td> 4800 </td>
         <td> 960 </td>
         <td> 5.0 </td>
         <td> 1.63 </td>
         <td> 1682 </td>
       </tr>
-      <tr> 
+      <tr>
         <td> 600 </td>
-        <td> 1st / 6310 </td>
+        <td> 1st </td>
+        <td> 6310 </td>
         <td> 1290 </td>
         <td> 4.90 </td>
         <td> 1.64 </td>
         <td> 1692 </td>
       </tr>
-      <tr> 
+      <tr>
         <td> 1200 </td>
-        <td> 1st / 7700 </td>
+        <td> 1st </td>
+        <td> 7700 </td>
         <td> 3930 </td>
         <td> 1.96 </td>
         <td> 0.80 </td>
@@ -230,7 +446,8 @@
       </tr>
       <tr>
         <td> 1200 </td>
-        <td> 1st / 9000 </td>
+        <td> 1st </td>
+        <td> 9000 </td>
         <td> 5097 </td>
         <td> 1.77 </td>
         <td> 0.78 </td>
@@ -251,11 +468,88 @@
       </colgroup>
       <tr>
         <td> Grating (lines/mm) </td>
-        <td> Blaze (order/&lambda; &Aring;) </td>
+        <td> Order</td>
+        <td> Blaze Wavelength (&Aring;)</td>
         <td> R (@ Blaze, 1" slit) </td>
+        <td> Resolution (&Aring;) </td>
         <td> Dispersion (&Aring;) </td>
-        <td> Coverage (&Aring;) </td> 
+        <td> Coverage (&Aring;) </td>
       </tr>
+      <tr>
+        <td> 300 </td>
+        <td> 1st </td>
+        <td> 4800 </td>
+        <td> 740 </td>
+        <td> 6.47 </td>
+        <td> 1.96 </td>
+        <td> 5268 </td>
+      </tr>
+      <tr>
+        <td> 500 </td>
+        <td> 1st </td>
+        <td> 5410 </td>
+        <td> 1430 </td>
+        <td> 3.79 </td>
+        <td> 1.19 </td>
+        <td> 3198 </td>
+      </tr>
+      <tr>
+        <td> 800 </td>
+        <td> 1st </td>
+        <td> 4050 </td>
+        <td> 1730 </td>
+        <td> 2.34 </td>
+        <td> 0.75 </td>
+        <td> 2016 </td>
+      </tr>
+      <tr>
+        <td> 600 </td>
+        <td> 1st </td>
+        <td> 9630 </td>
+        <td> 3330 </td>
+        <td> 2.9 </td>
+        <td> 1.0 </td>
+        <td> 2688 </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td> 2nd </td>
+        <td> 4800 </td>
+        <td> 3310 </td>
+        <td> 1.45 </td>
+        <td> 0.50 </td>
+        <td> 1344 </td>
+      </tr>
+      <tr>
+        <td> 832 </td>
+        <td> 1st </td>
+        <td> 7790 </td>
+        <td> 3830 </td>
+        <td> 2.04 </td>
+        <td> 0.72 </td>
+        <td> 1935 </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td> 2nd </td>
+        <td> 3900 </td>
+        <td> 3830 </td>
+        <td> 1.02 </td>
+        <td> 0.36 </td>
+        <td> 968 </td>
+      </tr>
+      <tr>
+        <td> 1200 </td>
+        <td> 1st </td>
+        <td> 4830 </td>
+        <td> 3340 </td>
+        <td> 1.45 </td>
+        <td> 0.50 </td>
+        <td> 1344 </td>
+      </tr>
+
+
+
       </table>
     </p>
     </div>

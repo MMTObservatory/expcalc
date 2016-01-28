@@ -101,6 +101,47 @@ function focusGratings()
   window.frames.info_frame.ShowGrating();
 }
 
+function focusCentralWavelength()
+{
+  //window.frames.info_frame.ShowCentralWavelength();
+  window.frames.info_frame.ShowGrating();
+}
+
+function focusFilters()
+{
+  window.frames.info_frame.ShowFilters();
+}
+
+function focusAperture()
+{
+  window.frames.info_frame.ShowAperture();
+}
+
+function focusABMagnitude()
+{
+  window.frames.info_frame.ShowABMagnitude();
+}
+
+function focusLunarPhase()
+{
+  window.frames.info_frame.ShowLunarPhase();
+}
+
+function focusAirmass()
+{
+  window.frames.info_frame.ShowAirmass();
+}
+
+function focusSeeing()
+{
+  window.frames.info_frame.ShowSeeing();
+}
+
+function focusBinning()
+{
+  window.frames.info_frame.ShowBinning();
+}
+
 
 function onAccordionChange(e, ui) {
   //Called when the accordion navigation chnges.
