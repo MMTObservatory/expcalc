@@ -7,17 +7,18 @@
 	<link href=" css/BlackTie/jquery-ui.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	<script src="css/BlackTie/external/jquery/jquery.js"></script>
-	<script src="http://code.jquery.com/jquery-1.9.1.js"
-          type="text/javascript">
-  </script>
-	<script type='text/javascript'
-          src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.js'>
-  </script>
-	<!--This is from the css example and includes some useful scripts.
-      I moved it to js/ for cleanliness -->
+	<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.js'></script>
+	<!--This is from the css example and includes some useful scripts. I moved it to js/ for cleanliness -->
 	<script src="js/expcalc.js"></script>
-	<script src="http://code.highcharts.com/highcharts.js"
-          type="text/javascript"></script>
+	<script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+
+
+
+
+
+
+
 </head>
 
 <body>
@@ -35,16 +36,14 @@
 						<div class="formContainer">
 							<div>
 								<!-- Spectrograph selection drop down. -->
-								<select name="instrument" onChange="onInstrumentChange(value)"
-                        id="instrument">
+								<select name="instrument" onChange="onInstrumentChange(value)" id="instrument">
 									<option value="none">Select Spectrograph</option>
 									<option value="blue">Blue Channel</option>
 									<option value="red">Red Channel</option>
 								</select>
 							</div>
 							<div>
-								<button type="button" value="next"
-                        onClick="selectInstrument();">Next</button>
+								<button type="button" value="next" onClick="selectInstrument();">Next</button>
 							</div>
 						</div>
 					</div>
@@ -56,8 +55,7 @@
 							<option value="1">Integration Time</option>
 							<option value="2">Signal-To-Noise</option>
 						</select>
-						<button type="button" value="next"
-                    onClick="selectOutput();">Next</button>
+						<button type="button" value="next" onClick="selectOutput();">Next</button>
 					</div>
 
 
@@ -68,8 +66,7 @@
 						<!-- Boiler plate in case the user gets to tab 2
 						without selecting output type -->
 						<div id="outputType0">
-							<span class='bold' style="color:red">Please Choose
-                    <u>Calculation Type</u> before continuing.
+							<span class='bold' style="color:red">Please Choose <u>Calculation Type</u> before continuing.
 							</span>
 						</div>
 
@@ -78,9 +75,7 @@
 						<div id="outputType1">
 							<span class="bold">Integration Time:</span>
 							<span class="parameterinput">
-								<input name="time" onFocus="focusIntegrationTime();"
-                        type="text" id="time" value="" size="10"
-                        maxlength="6" />
+								<input name="time" onFocus="focusIntegrationTime();" type="text" id="time" value="" size="10" maxlength="6" />
 							</span>seconds
 						</div>
 
@@ -89,9 +84,7 @@
 						<div id="outputType2">
 							<span class="bold"> Signal-to-Noise: </span>
 							<span class="parameterinput">
-								<input name="sn" onFocus="focusSignalNoise();"
-                        type="text" id="sn" value="1.2"
-                        size="6" maxlength="6" />
+								<input name="sn" onFocus="focusSignalNoise();" type="text" id="sn" value="1.2" size="6" maxlength="6" />
 							</span>
 						</div>
 
@@ -100,10 +93,8 @@
 						<div>
 							<span class="bold"> Grating: </span>
 							<div class="subparam">Available Gratings:
-								<select onFocus="focusGratings();" name="grating_selector"
-                        id="grating_selector" disabled>
-									<option value="noinstrument" selected>
-                        Select Instrument</option>
+								<select onFocus="focusGratings();" name="grating_selector" id="grating_selector" disabled>
+									<option value="noinstrument" selected> Select Instrument</option>
 								</select>
 							</div>
 						</div>
@@ -111,15 +102,13 @@
 						<!-- Grating order -->
 						<div class="subparam">
 							Order:
-							<input name="order" type="text" id="order" value="1"
-              size="5" maxlegenth="1" />
+							<input name="order" type="text" id="order" value="1" size="5" maxlegenth="1" />
 						</div>
 
 						<!--Central Wavelength -->
 						<div class="subparam">
 							Central Wavelength:
-							<input onFocus="focusCentralWavelength();" name="cenwave"
-              type="text" id="cenwave" value="" size='10' />
+							<input onFocus="focusCentralWavelength();" name="cenwave" type="text" id="cenwave" value="" size='10' />
 						</div>
 
 						<!-- Filter May as well go here as it makes the most sense -->
@@ -155,15 +144,13 @@
 							<!-- Spatial -->
 							<div class="subparam">
 								Spatial Binning:
-								<input name="spatialBinning" type="text" id="spatialBinning"
-                value="2" size="5" maxlegnth=2 onFocus="focusBinning();"/>
+								<input name="spatialBinning" type="text" id="spatialBinning" value="2" size="5" maxlegnth=2 onFocus="focusBinning();"/>
 							</div>
 
 							<!-- Spectral -->
 							<div class="subparam">
 								Dispersion Binning:
-								<input name="spectralBinning" type="text" id="spectralBinning"
-                  value="1" size="5" maxlength=2 onFocus="focusBinning();"/>
+								<input name="spectralBinning" type="text" id="spectralBinning" value="1" size="5" maxlength=2 onFocus="focusBinning();"/>
 							</div>
 
 						</div>
@@ -188,8 +175,7 @@
 						source for the calculation. We can change this later, but not yet -->
 						<div>
 							<span class='bold'>AB Magnitude: </span>
-							<input onFocus="focusABMagnitude();" name="ABmag" id="ABmag"
-              type='text' size=4 />
+							<input onFocus="focusABMagnitude();" name="ABmag" id="ABmag" type='text' size=4 />
 						</div>
 
 						<div>
@@ -199,28 +185,24 @@
 							<!-- Seeing first -->
 							<div class="subparam">
 								Seeing:
-								<input name='seeing' type="text" id="seeing" value="1.0"
-                size="5" maxlegnth=5 onFocus="focusSeeing();"/> arcsec
+								<input name='seeing' type="text" id="seeing" value="1.0" size="5" maxlegnth=5 onFocus="focusSeeing();"/> arcsec
 							</div>
 
 							<!-- Lunar phase -->
 							<div class="subparam">
 								Lunar Phase:
-								<input name='lunarphase' type='text' id='lunarphase'
-                value='0' size='5' maxlength=2 onFocus="focusLunarPhase();"/>
+								<input name='lunarphase' type='text' id='lunarphase' value='0' size='5' maxlength=2 onFocus="focusLunarPhase();"/>
 							</div>
 
 							<!-- Airmass -->
 							<div class="subparam">
 								Airmass:
-								<input name='airmass' type='text' id='airmass'
-                value="1.0" size="5" maxlegnth=4 onFocus="focusAirmass();"/>
+								<input name='airmass' type='text' id='airmass' value="1.0" size="5" maxlegnth=4 onFocus="focusAirmass();"/>
 							</div>
 
 							<!-- The magic "GO" Button -->
 							<div>
-								<button id="submit" type="button" onClick="Run();">
-                  Calculate </button>
+								<button id="submit" type="button" onClick="Run();"> Calculate </button>
 							</div>
 
 
@@ -240,29 +222,23 @@
 						<li><a href="#tabs-3">Help</a></li>
 					</ul>
 					<div id="tabs-1" class="floater_help">
-						<iframe name="info_frame" id="info_frame" src="info.html"
-            width="100%" height="400" frameborder="0"></iframe>
+						<iframe name="info_frame" id="info_frame" src="info.html" width="100%" height="400" frameborder="0"></iframe>
 					</div>
 					<div id="tabs-2">
 						<div id="loading">
-							<img src="images/ajax-loader.gif" width="16" height="16">
-              Calculating </div>
+							<img src="images/ajax-loader.gif" width="16" height="16"> Calculating </div>
 						<span id="summary">
 							<div class="resultparam" id="snrresult">
 								Signal-to-Noise:
-								<input name="finalsnr" type="text" id="finalsnr"
-                value="" size=20 maxlength=10 disabled align="right" />
+								<input name="finalsnr" type="text" id="finalsnr" value="" size=20 maxlength=10 disabled align="right" />
 							</div>
 							<div class="resultparam" id="timeresult">
 								Exposure Time:
-								<input name="finalexptime" type="text" id="finalexptime"
-                value="" size=20 maxlength=10 disabled align="right" /> Seconds
+								<input name="finalexptime" type="text" id="finalexptime" value="" size=20 maxlength=10 disabled align="right" /> Seconds
 							</div>
 							<div class="resultbuttons">
-								<button id="showCountsPlot" type="button"
-                onClick="ShowCountsPlot();">Show Plot of Counts </button>
-								<button id="showSNRPlot" type="button"
-                onClick="ShowSNRPlot();"> Show Expected SNR Plot </button>
+								<button id="showCountsPlot" type="button" onClick="ShowCountsPlot();">Show Plot of Counts </button>
+								<button id="showSNRPlot" type="button" onClick="ShowSNRPlot();"> Show Expected SNR Plot </button>
 
 
 							</div>
@@ -307,7 +283,6 @@
 
 					//Serialize the settings and pass to JSON
 					var params = $("#exptime_form").serialize();
-          console(params)
 					var url = "json_calculate.php";
 					$.ajax({
 						type: "POST",
@@ -544,8 +519,7 @@
 				}
 
 				//Check the grating
-				if ($("#grating_selector").val() == "gratingnone" ||
-            $("#grating_selector").val() == "noinstrument") {
+				if ($("#grating_selector").val() == "gratingnone" || $("#grating_selector").val() == "noinstrument") {
 					messages.push("Please select a Grating \n");
 					$("#grating_selector").addClass("error");
 					success = false;
@@ -565,12 +539,12 @@
 					success = false;
 				}
 
-        //Check the range of the central Wavelength
-        if ($("#cenwave").val() < 3400 || $("#cenwave").val() > 10000){
-          messages.push("Please enter a central wavelength between 3400 and 10000");
-          $("#cenwave").addClass("error");
-          success = false;
-        }
+                // Cehck the range on the central wavelength
+                if (($("#cenwave").val() < 3400) || ($("#cenwave").val() > 10000)){
+                    messages.push("Central Wavelength should be between 3400 and 10000");
+                    $("#cenwave").addClass("error");
+                    success = false;
+                }
 
 				//Check the magnitude
 				if ($("#ABmag").val() == "" || !numberPattern.test($("#ABmag").val())) {
@@ -594,8 +568,7 @@
 				}
 
 				//Check the lunar phase
-				if ($("#lunarphase").val() == "" ||
-            !numberPattern.test($("#lunarphase").val())) {
+				if ($("#lunarphase").val() == "" || !numberPattern.test($("#lunarphase").val())) {
 					messages.push("Please enter a lunar phase");
 					$("#lunarphase").addClass("error");
 					success = false;
@@ -609,16 +582,14 @@
 				}
 
 				//Check spatial binning
-				if ($("#spatialBinning").val() == "" ||
-            !numberPattern.test($("#spatialBinning").val())) {
+				if ($("#spatialBinning").val() == "" || !numberPattern.test($("#spatialBinning").val())) {
 					messages.push("Please enter a valid spatial binning value");
 					$("#spatialBinning").addClass("error");
 					success = false;
 				}
 
 				//check spectral binning
-				if ($("#spectralBinning").val() == "" ||
-            !numberPattern.test($("#spectralBinning").val())) {
+				if ($("#spectralBinning").val() == "" || !numberPattern.test($("#spectralBinning").val())) {
 					messages.push("Please enter a valid spectral binning value");
 					$("#spectralBinning").addClass("error");
 					success = false
@@ -626,8 +597,7 @@
 
 				if (!success) {
 					alert(messages);
-					//alert("Error: You are missing some required fields.
-          //Please enter values and retry");
+					//alert("Error: You are missing some required fields. Please enter values and retry");
 					return false;
 				}
 
