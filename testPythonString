@@ -1,1 +1,2 @@
-python python/json_exptime.py '{"spectrograph":"red","outputType":"1","depth":13,"calcType":"Time","grating":"150gpm","order":1,"cenwave":5123,"filter":"R63","binning_spatial":2,"binning_spectral":1,"slit_width":1.5,"seeing":1,"specmag":23,"lunar_phase":0,"airmass":1}'
+python python/json_exptime.py '{"spectrograph":"red","outputType":"1","depth":32,"calcType":"Time","grating":"150gpm","order":1,"cenwave":5123,"filter":"25ND","binning_spatial":2,"binning_spectral":1,"slit_width":1,"seeing":1,"specmag":12,"lunar_phase":0,"airmass":1}'
+
