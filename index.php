@@ -406,6 +406,11 @@
 							x: -80,
 							y: 50,
 						},
+						tooltip: {
+							formatter: function() {
+								return ' ' + this.x + ' Ang, ' + this.y.toFixed(1) + ' Counts/pixel';
+							}
+						},
 						series: [{
 							name: 'Sky',
 							data: data.skycounts,
