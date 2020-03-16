@@ -328,35 +328,43 @@
 			//If we succeed
 			function OnResult(data) {
 				console.log(data);
-
-
-				var exptime_in = data.exptime_median;
-				var snr_in = data.snr_median;
-				var exptime = exptime_in.toFixed(1);
-				var snr = snr_in.toFixed(2);
-
-
-
-				$("#loading").hide();
-
-
-
-				$("#showSNRPlot").hide();
-				$("#showCountsPlot").show();
-				$("#timeresult").hide();
-				$("#snrresult").hide();
-
-
-				//Show the results
-				if (data.calcType == "Time") {
-					$("#timeresult").show();
-					$("#finalexptime").val(exptime);
-
-				}
-				if (data.calcType == "SNR") {
-					$("#snrresult").show();
-					$("#finalsnr").val(snr);
-				}
+                
+                // DP - add a try/catch here
+                try
+                {
+                    var exptime_in = data.exptime_median;
+                    var snr_in = data.snr_median;
+                    var exptime = exptime_in.toFixed(1);
+                    var snr = snr_in.toFixed(2);
+    
+    
+    
+                    $("#loading").hide();
+    
+    
+    
+                    $("#showSNRPlot").hide();
+                    $("#showCountsPlot").show();
+                    $("#timeresult").hide();
+                    $("#snrresult").hide();
+    
+    
+                    //Show the results
+                    if (data.calcType == "Time") {
+                        $("#timeresult").show();
+                        $("#finalexptime").val(exptime);
+    
+                    }
+                    if (data.calcType == "SNR") {
+                        $("#snrresult").show();
+                        $("#finalsnr").val(snr);
+                    }
+                }
+                catch( err )
+                {
+                    alert( err );
+                    return;
+                }
 
 
 				$(function() {

@@ -35,11 +35,11 @@ $form_data = array(); // Pass back to index
 
 //Execute the python script with JSON data
 
-$result = shell_exec("python python/json_exptime.py " . escapeshellarg(json_encode($params)));
+$result = shell_exec("python2 python/json_exptime.py " . escapeshellarg(json_encode($params)));
 
 //Decode the result
 $form_data = json_decode($result, true);
-$form_data['command'] = "python python/json_exptime.py " . escapeshellarg(json_encode($params));
+$form_data['command'] = "python2 python/json_exptime.py " . escapeshellarg(json_encode($params));
 
 if (!empty($errors)) { // If there were any errors
   $form_data['success'] = false;
