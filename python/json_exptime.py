@@ -1,3 +1,4 @@
+#!./env/bin/python
 #!/usr/bin/python
 #Exposure time / Signal to Noise calculator for the red and blue channel spectrographs on the MMT.
 #This is Version 0.0 of the code - expect substantial structural changes to integrate with the PHP
@@ -23,7 +24,9 @@ from scipy.interpolate import interp1d
 import math
 import json
 import re
-from  pylab import *
+import datetime
+
+#from  pylab import *
 
 
 def extrap1d(interpolator):
@@ -428,7 +431,7 @@ def source_transmission(opt):
 def main(argv):
     # DP - 09/27/2016
     # Write out the arguments to a log file for debugging and general usage curiosity.
-    log_file = open( "/www/html/expcalc/python/log.txt", "a" )
+    log_file = open( "/var/www/html/expcalc/python/log.txt", "a" )
     if( log_file != None ):
         log_file.write( "Exposure Time Calculator submission\n------------------------------\n" )
         log_file.write( "{}: {}\n".format( str( datetime.datetime.now() ), argv ) )
