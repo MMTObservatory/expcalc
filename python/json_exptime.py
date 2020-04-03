@@ -1,5 +1,3 @@
-#!./env/bin/python
-#!/usr/bin/python
 #Exposure time / Signal to Noise calculator for the red and blue channel spectrographs on the MMT.
 #This is Version 0.0 of the code - expect substantial structural changes to integrate with the PHP
 #for use online.
@@ -43,7 +41,7 @@ def extrap1d(interpolator):
             return interpolator(x)
 
     def ufunclike(xs):
-        return np.array(map(pointwise, np.array(xs)))
+        return np.array(list(map(pointwise, np.array(xs))))
     return ufunclike
 
 def interpol(newx, oldx, oldy):
@@ -148,7 +146,7 @@ def readSpectroDataFile(filename):
     for line in f.readlines():
         splitArray = line.split();
         if len(splitArray) == 2:
-            x1, y1 = map(float, splitArray)
+            x1, y1 = list(map(float, splitArray))
             xx.append(x1)
             yy.append(y1)
 
@@ -527,8 +525,8 @@ def main(argv):
                 exp_time_goal.append(exptime)
                 counter += 1
 
-        data['snr_sub'] = zip(lam_subarray, snr_subarray);
-        data['exp_sub'] = zip(lam_subarray, exp_time_goal);
+        data['snr_sub'] = list(zip(lam_subarray, snr_subarray));
+        data['exp_sub'] = list(zip(lam_subarray, exp_time_goal));
         if counter > 1:
             snr_median = np.median(snr_subarray)
             data['snr_median'] = snr_median
@@ -546,7 +544,7 @@ def main(argv):
                     (snr_goal**4*(objflux+npix*skyflux)**2 +
                      4.0*objflux**2*snr_goal**2*npix*readnoise**2)**0.5) / (2*objflux**2)
 
-        data['exptime'] = zip(lam.tolist(), exptime.tolist())
+        data['exptime'] = list(zip(lam.tolist(), exptime.tolist()))
 
         min_time = np.amin(exptime)
         max_time = np.amax(exptime)
@@ -581,8 +579,8 @@ def main(argv):
                 snr_goal_sub.append(snr_goal)
                 counter +=1
 
-        data['exp_sub'] = zip(lam_subarray,exptime_subarray)
-        data['snr_sub'] = zip(lam_subarray, snr_goal_sub);
+        data['exp_sub'] = list(zip(lam_subarray,exptime_subarray))
+        data['snr_sub'] = list(zip(lam_subarray, snr_goal_sub));
         if counter > 1:
             exptime_median = np.median(exptime_subarray)
             data['exptime_median'] = exptime_median
@@ -596,16 +594,16 @@ def main(argv):
     totalcounts = objcounts + skycounts
 
     data['lam'] = lam.tolist()
-    data['skycounts'] = zip(lam.tolist(), skycounts.tolist())
-    data['objcounts'] = zip(lam.tolist(), objcounts.tolist())
-    data['totalcounts'] = zip(lam.tolist(), totalcounts.tolist())
-    data['snr'] = zip(lam.tolist(), snr.tolist())
+    data['skycounts'] = list(zip(lam.tolist(), skycounts.tolist()))
+    data['objcounts'] = list(zip(lam.tolist(), objcounts.tolist()))
+    data['totalcounts'] = list(zip(lam.tolist(), totalcounts.tolist()))
+    data['snr'] = list(zip(lam.tolist(), snr.tolist()))
     
     # DP - close the log file.
     if( log_file != None ):
         log_file.close()
     
-    print json.dumps(data)
+    print(json.dumps(data))
 
 if __name__=="__main__":
     main(sys.argv)

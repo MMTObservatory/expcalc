@@ -326,12 +326,12 @@
 			}
 
 			//If we succeed
-			function OnResult(data) {
-				console.log(data);
+	function OnResult(data) {
+		console.log(data);
                 
                 // DP - add a try/catch here
                 try
-                {
+		{
                     var exptime_in = data.exptime_median;
                     var snr_in = data.snr_median;
                     var exptime = exptime_in.toFixed(1);
